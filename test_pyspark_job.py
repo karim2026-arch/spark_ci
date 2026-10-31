@@ -81,3 +81,7 @@ def test_mixed_batch(spark):
 
     assert sorted(r["id"] for r in result.collect()) == [1, 5]
     assert result.columns == ["id", "name", "amount", "amount_with_tax"]
+
+def test_empty_dataframe(spark):
+    df = make_df(spark, [])
+    assert clean_data(df).count() == 0
